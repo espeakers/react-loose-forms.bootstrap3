@@ -1,6 +1,6 @@
 {
   "name": "react-loose-forms.bootstrap3",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "layouts and inputs that work with react-loose-forms and bootstrap3",
   "main": "index.js",
   "repository": {
