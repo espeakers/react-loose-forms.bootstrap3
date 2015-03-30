@@ -1,0 +1,16 @@
+{
+  "name": "react-loose-forms.bootstrap3",
+  "version": "0.0.0",
+  "description": "layouts and inputs that work with react-loose-forms and bootstrap3",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/espeakers/react-loose-forms.bootstrap3.git"
+  },
+  "author": "espeakers",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/espeakers/react-loose-forms.bootstrap3/issues"
+  },
+  "homepage": "https://github.com/espeakers/react-loose-forms.bootstrap3"
+}
