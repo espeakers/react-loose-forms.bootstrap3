@@ -12,5 +12,9 @@
   "bugs": {
     "url": "https://github.com/espeakers/react-loose-forms.bootstrap3/issues"
   },
-  "homepage": "https://github.com/espeakers/react-loose-forms.bootstrap3"
+  "homepage": "https://github.com/espeakers/react-loose-forms.bootstrap3",
+  "peerDependencies": {
+    "react": "*",
+    "react-loose-forms": "*"
+  }
 }
