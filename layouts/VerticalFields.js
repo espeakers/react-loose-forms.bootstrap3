@@ -53,9 +53,8 @@ module.exports = dd.createClass({
 
 var VerticalField = dd.createClass({
 	propTypes: {
-		//field_name: String or Component //basically required, if not a field name it'll stick it in a div at the proper col-width
 		field: React.PropTypes.object.isRequired,
-		errors: React.PropTypes.object.isRequired,
+		error: React.PropTypes.object.isRequired,
 		buildInput: React.PropTypes.func.isRequired
 	},
 	render: function(){
