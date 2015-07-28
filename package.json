@@ -13,8 +13,10 @@
     "url": "https://github.com/espeakers/react-loose-forms.bootstrap3/issues"
   },
   "homepage": "https://github.com/espeakers/react-loose-forms.bootstrap3",
-  "peerDependencies": {
-    "react": "*",
-    "react-loose-forms": "*"
+  "dependencies": {
+    "lodash": "^3.10.0",
+    "react": "^0.13.3",
+    "react-dd": "0.0.1",
+    "react-loose-forms": "0.0.2"
   }
 }

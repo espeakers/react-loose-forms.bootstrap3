@@ -1,4 +1,3 @@
-var _ = require('lodash');
 var dd = require('react-dd');
 var FormInputMixin = require('react-loose-forms/FormInputMixin');
 
@@ -12,27 +11,19 @@ var component = dd.createClass({
 		var value = this.props.value;
 
 		if(field.read_only){
-			return dd.p({className: 'form-control-static'},
+			return dd.p({className: 'form-control-static', style: {whiteSpace: 'pre-wrap'}},
 				value
 			);
 		}
 
-		var p = {
-			name: field.name,
-			type: field.type || 'text',
-			value: value || '',
+		return dd.textarea({
+			rows: field.rows > 0 ? field.rows : 3,
 			placeholder: field.placeholder || null,
 			className: 'form-control',
+			value: value || '',
+			name: field.name,
 			onChange: this.__onChange
-		};
-		if(p.type === "number"){
-			_.each(["min", "max", "step"], function(key){
-				if(_.has(field, key) && _.isNumber(field[key])){
-					p[key] = field[key];
-				}
-			});
-		}
-		return dd.input(p);
+		});
 	}
 });
 
