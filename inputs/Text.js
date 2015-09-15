@@ -23,6 +23,7 @@ var component = dd.createClass({
 			value: value || '',
 			placeholder: field.placeholder || null,
 			className: 'form-control',
+			autoFocus: field.autofocus || false,
 			onChange: this.__onChange
 		};
 		if(p.type === "number"){
