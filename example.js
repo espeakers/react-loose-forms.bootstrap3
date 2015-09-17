@@ -6,6 +6,7 @@ require("./bootstrap.min.css");
 require("./").install(require("react-loose-forms/InputTypes"));
 var input_types = Object.keys(require("./").types);
 
+var FormButtons = require("./layouts/FormButtons");
 var VerticalFields = require("./layouts/VerticalFields");
 
 var DaForm = dd.createClass({
@@ -15,7 +16,11 @@ var DaForm = dd.createClass({
     input_types.forEach(function(type){
       schema[type] = {
         label: "sample " + type,
-        type: type
+        type: type,
+        options: {
+          one: "one 1",
+          two: "two 2"
+        }
       };
     });
     return schema;
@@ -27,7 +32,7 @@ var DaForm = dd.createClass({
         errors: this.state.errors || {},
         buildInput: this.Form_buildInput
       }),
-      VerticalFields.FormButtons({submit_btn_text: "submit"})
+      FormButtons({submit_btn_text: "submit"})
     );
   }
 });
