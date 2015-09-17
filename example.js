@@ -19,6 +19,7 @@ var DaForm = dd.createClass({
       schema[type] = {
         label: "sample " + type,
         type: type,
+        pick_time: true,
         tooltip: "some tooltip huh?",
         options: {
           one: "one 1",

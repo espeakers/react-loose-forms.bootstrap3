@@ -4,7 +4,7 @@ var dateFormat = require('dateformat');
 var HoverMixin = require('react-hover-mixin');
 var wrapPreventDefault = require("./wrapPreventDefault");
 
-require('./Date.less.js');
+require('./index.less.js');
 var DatePickerCalendar = require('./DatePickerCalendar');
 var DateTypeIn = require('./DateTypeIn');
 var TimePicker = require('./TimePicker');
@@ -71,7 +71,7 @@ var component = dd.createClass({
     }
 
     return dd.div({
-        className: 'Date input-group',
+        className: 'react-loose-forms-bs3-date input-group',
         onClick: this.__toggleCalendar,
         onMouseEnter: this.hoverable_onMouseEnter,
         onMouseLeave: this.hoverable_onMouseLeave
@@ -79,10 +79,10 @@ var component = dd.createClass({
       DateTypeIn({pick_date: pick_date, pick_time: pick_time, value: value, onDateSet: this.__onDateSet, placeholder: field.placeholder}),
       dd.span({className: 'input-group-btn' + (this.state.show_calendar || this.state.show_timepicker ? ' open' : ''), style: {verticalAlign: 'top'}},
         !pick_date ? null : dd.button({type: 'button', className: 'btn btn-default', onClick: this.__toggleCalendar},
-          dd.i({className: 'fa fa-calendar'})
+          dd.i({className: 'react-loose-forms-bs3-date-icon react-loose-forms-bs3-date-icon-calendar'})
         ),
         !pick_time ? null : dd.button({type: 'button', className: 'btn btn-default', onClick: this.__toggleTimepicker},
-          dd.i({className: 'fa fa-clock-o'})
+          dd.i({className: 'react-loose-forms-bs3-date-icon react-loose-forms-bs3-date-icon-clock'})
         ),
         !(this.state.show_calendar || this.state.show_timepicker) ? null : dd.div({
             className: 'dropdown-menu pull-right',

@@ -127,11 +127,11 @@ module.exports = dd.createClass({
           dd.tr(null,
             dd.th({colSpan: 7, className: 'month'},
               start_day > 0 ? null : dd.button({className: 'btn btn-default btn-sm pull-left', onClick: this.__prevMonth},
-                dd.i({className: 'fa fa-angle-left'})
+                dd.i({className: 'react-loose-forms-bs3-date-icon react-loose-forms-bs3-date-icon-angle-left'})
               ),
               getMonthName(month) + ' ' + year,
               stop_day > 0 ? null : dd.button({className: 'btn btn-default btn-sm pull-right', onClick: this.__nextMonth},
-                dd.i({className: 'fa fa-angle-right'})
+                dd.i({className: 'react-loose-forms-bs3-date-icon react-loose-forms-bs3-date-icon-angle-right'})
               )
             )
           ),

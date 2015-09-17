@@ -43,11 +43,11 @@ module.exports = dd.createClass({
       dd.table(null,
         dd.tbody(null,
           dd.tr(null,
-            dd.td(null, dd.button({className: 'btn btn-default', onClick: this.__increment('hour', 1)}, dd.i({className: 'fa fa-angle-up'}))),
+            dd.td(null, dd.button({className: 'btn btn-default', onClick: this.__increment('hour', 1)}, dd.i({className: 'react-loose-forms-bs3-date-icon react-loose-forms-bs3-date-icon-angle-up'}))),
             dd.td(),
-            dd.td(null, dd.button({className: 'btn btn-default', onClick: this.__increment('min', 1)}, dd.i({className: 'fa fa-angle-up'}))),
+            dd.td(null, dd.button({className: 'btn btn-default', onClick: this.__increment('min', 1)}, dd.i({className: 'react-loose-forms-bs3-date-icon react-loose-forms-bs3-date-icon-angle-up'}))),
             dd.td(),
-            dd.td(null, dd.button({className: 'btn btn-default', onClick: this.__increment('hour', 12)}, dd.i({className: 'fa fa-angle-up'})))
+            dd.td(null, dd.button({className: 'btn btn-default', onClick: this.__increment('hour', 12)}, dd.i({className: 'react-loose-forms-bs3-date-icon react-loose-forms-bs3-date-icon-angle-up'})))
           ),
           dd.tr(null,
             dd.td(null, dd.input({type: 'text', className: 'form-control input-sm', placeholder: 'HH', maxLength: 2, value: hours, onChange: this.__onTypeHour, disabled: 'disabled'})),
@@ -57,11 +57,11 @@ module.exports = dd.createClass({
             dd.td(null, dd.input({type: 'text', className: 'form-control input-sm', placeholder: 'AM/PM', maxLength: 2, value: ampm, onChange: this.__onTypeAMPM, disabled: 'disabled'}))
           ),
           dd.tr(null,
-            dd.td(null, dd.button({className: 'btn btn-default', onClick: this.__increment('hour', -1)}, dd.i({className: 'fa fa-angle-down'}))),
+            dd.td(null, dd.button({className: 'btn btn-default', onClick: this.__increment('hour', -1)}, dd.i({className: 'react-loose-forms-bs3-date-icon react-loose-forms-bs3-date-icon-angle-down'}))),
             dd.td(),
-            dd.td(null, dd.button({className: 'btn btn-default', onClick: this.__increment('min', -1)}, dd.i({className: 'fa fa-angle-down'}))),
+            dd.td(null, dd.button({className: 'btn btn-default', onClick: this.__increment('min', -1)}, dd.i({className: 'react-loose-forms-bs3-date-icon react-loose-forms-bs3-date-icon-angle-down'}))),
             dd.td(),
-            dd.td(null, dd.button({className: 'btn btn-default', onClick: this.__increment('hour', -12)}, dd.i({className: 'fa fa-angle-down'})))
+            dd.td(null, dd.button({className: 'btn btn-default', onClick: this.__increment('hour', -12)}, dd.i({className: 'react-loose-forms-bs3-date-icon react-loose-forms-bs3-date-icon-angle-down'})))
           )
         )
       )
