@@ -19,8 +19,7 @@
   },
   "homepage": "https://github.com/espeakers/react-loose-forms.bootstrap3",
   "peerDependencies": {
-    "react": "*",
-    "react-loose-forms": "^1.0.0"
+    "react": "*"
   },
   "dependencies": {
     "lodash": "^3.10.0",
@@ -33,7 +32,7 @@
     "browserify": "^11.1.0",
     "browserify-css": "^0.7.1",
     "react": "^0.13.3",
-    "react-loose-forms": "^1.0.1",
+    "react-loose-forms": "^2.0.0",
     "wzrd": "^1.3.1"
   }
 }

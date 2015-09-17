@@ -1,15 +1,13 @@
 var _ = require('lodash');
 var dd = require('react-dd');
-var FormInputMixin = require('react-loose-forms/FormInputMixin');
 
 var placeholder_value = '__some$random$uuid__';
 
 var component = dd.createClass({
-	mixins: [FormInputMixin],
 	__onChange: function(e){
 		var field = this.props.field;
 		var new_value = e.target.value;
-		this.FormInput_newValue(_.has(field.options, new_value) ? new_value : null);
+		this.props.onChange(_.has(field.options, new_value) ? new_value : null);
 	},
 	render: function(){
 		var field = this.props.field;
