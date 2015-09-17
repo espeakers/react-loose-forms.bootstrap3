@@ -43,7 +43,13 @@ var DaForm = dd.createClass({
 
       use_horizontal
         ? HorizontalFieldSpot(null, btns)
-        : btns
+        : btns,
+
+      dd.div({className: "clearfix"}),
+      dd.pre(null,
+        "this.state = ",
+        JSON.stringify(this.state, false, 2)
+      )
     );
   }
 });
