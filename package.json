@@ -23,7 +23,8 @@
   },
   "dependencies": {
     "lodash": "^3.10.0",
-    "react-dd": "^1.0.0"
+    "react-dd": "^1.0.0",
+    "react-hover-mixin": "^1.1.0"
   },
   "scripts": {
     "start": "wzrd example.js -- -t browserify-css"
