@@ -8,6 +8,8 @@ var input_types = Object.keys(require("./").types);
 
 var FormButtons = require("./layouts/FormButtons");
 var VerticalFields = require("./layouts/VerticalFields");
+var HorizontalFields = require("./layouts/HorizontalFields");
+var HorizontalFieldSpot = require("./layouts/HorizontalFieldSpot");
 
 var DaForm = dd.createClass({
   mixins: [FormMixin],
@@ -27,26 +29,42 @@ var DaForm = dd.createClass({
     return schema;
   },
   render: function(){
-    return dd.form({onSubmit: this.Form_onSubmit},
-      VerticalFields({
+    var use_horizontal = this.props.use_horizontal;
+    var fields_config = {
         fields: this.Form_buildSchema(),
         errors: this.state.errors || {},
         buildInput: this.Form_buildInput
-      }),
-      FormButtons({submit_btn_text: "submit"})
+    };
+    var btns = FormButtons({submit_btn_text: "submit"});
+    return dd.form({onSubmit: this.Form_onSubmit},
+      use_horizontal
+        ? HorizontalFields(fields_config)
+        : VerticalFields(fields_config),
+
+      use_horizontal
+        ? HorizontalFieldSpot(null, btns)
+        : btns
     );
   }
 });
 
 React.render(dd.createClass({
+  getInitialState: function(){
+    return {use_horizontal: false};
+  },
   __onSubmit: function(data){
     console.log("__onSubmit", data);
+  },
+  __toggleLayout: function(e){
+    e.preventDefault();
+    this.setState({use_horizontal: !this.state.use_horizontal});
   },
   render: function(){
     return dd.div({className: "container-fluid"},
       dd.div({className: "row"},
         dd.div({className: "col-sm-4"},
-          DaForm({onSubmit: this.__onSubmit})
+          dd.h1(null, "Example ", dd.small(null, dd.a({href: "#", onClick: this.__toggleLayout}, "change layout"))),
+          DaForm({onSubmit: this.__onSubmit, use_horizontal: this.state.use_horizontal})
         )
       )
     );
