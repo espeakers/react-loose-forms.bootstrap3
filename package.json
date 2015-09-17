@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "description": "layouts and inputs that work with react-loose-forms and bootstrap3",
   "main": "index.js",
+  "files": [
+    "index.js",
+    "inputs/",
+    "layouts/"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/espeakers/react-loose-forms.bootstrap3.git"
@@ -20,5 +25,15 @@
   "dependencies": {
     "lodash": "^3.10.0",
     "react-dd": "^1.0.0"
+  },
+  "scripts": {
+    "start": "wzrd example.js -- -t browserify-css"
+  },
+  "devDependencies": {
+    "browserify": "^11.1.0",
+    "browserify-css": "^0.7.1",
+    "react": "^0.13.3",
+    "react-loose-forms": "^1.0.1",
+    "wzrd": "^1.3.1"
   }
 }
