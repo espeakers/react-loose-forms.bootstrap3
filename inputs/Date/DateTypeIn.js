@@ -19,7 +19,7 @@ var formatDate = function(value, pick_date, pick_time){
     if(_.isDate(value) && value.getHours() === 0 && value.getMinutes() === 0){
       //just don't show that there is a place for time input
     }else{
-      format_parts.push(' "-" h:MM TT');
+      format_parts.push('- h:MM TT');
     }
   }
   return _.isDate(value) ? dateFormat(value, format_parts.join(' ')) : '';

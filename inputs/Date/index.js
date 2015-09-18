@@ -62,7 +62,7 @@ var component = dd.createClass({
       if(pick_time){
         if(_.isDate(value) && value.getHours() === 0 && value.getMinutes() === 0){
         }else{
-          format_parts.push(' "-" h:MM TT');
+          format_parts.push('- h:MM TT');
         }
       }
       return dd.p({className: 'form-control-static'},
