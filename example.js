@@ -7,8 +7,8 @@ require("./").install(require("react-loose-forms/InputTypes"));
 var input_types = Object.keys(require("./").types);
 
 var FormButtons = require("./layouts/FormButtons");
-var VerticalFields = require("./layouts/VerticalFields");
-var HorizontalFields = require("./layouts/HorizontalFields");
+var ezVerticalFields = require("./layouts/ezVerticalFields");
+var ezHorizontalFields = require("./layouts/ezHorizontalFields");
 var HorizontalFieldSpot = require("./layouts/HorizontalFieldSpot");
 
 var DaForm = dd.createClass({
@@ -31,16 +31,11 @@ var DaForm = dd.createClass({
   },
   render: function(){
     var use_horizontal = this.props.use_horizontal;
-    var fields_config = {
-        fields: this.Form_buildSchema(),
-        errors: this.state.errors || {},
-        buildInput: this.Form_buildInput
-    };
     var btns = FormButtons({submit_btn_text: "submit"});
     return dd.form({onSubmit: this.Form_onSubmit},
       use_horizontal
-        ? HorizontalFields(fields_config)
-        : VerticalFields(fields_config),
+        ? ezHorizontalFields(this)
+        : ezVerticalFields(this),
 
       use_horizontal
         ? HorizontalFieldSpot(null, btns)
