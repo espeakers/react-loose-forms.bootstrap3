@@ -1,30 +1,49 @@
+var _ = require('lodash');
 var dd = require('react-dd');
 var React = require('react');
+var ucfirst = require('ucfirst');
+
+var buttons = [
+  ['submit', 'primary', 'Save'],
+  ['discard', 'default', 'Undo Changes'],
+  ['cancel', 'default', 'Cancel'],
+  ['delete', 'danger', 'Delete']
+];
+
+var propTypes = {
+  scale: React.PropTypes.oneOf(['sm', 'md', 'lg'])
+};
+_.each(buttons, function(b){
+  propTypes['on' + ucfirst(b[0])] = React.PropTypes.func;
+  propTypes[b[0] + '_btn_text'] = React.PropTypes.string;
+});
 
 module.exports = dd.createClass({
-  propTypes: {
-    scale: React.PropTypes.oneOf(['sm', 'md', 'lg']),
-
-    onCancel: React.PropTypes.func,
-    onDelete: React.PropTypes.func,
-    onDiscard: React.PropTypes.func,
-    submit_btn_text: React.PropTypes.string
-  },
+  propTypes: propTypes,
   render: function(){
     var scale = this.props.scale || 'sm';
-    var onCancel = this.props.onCancel;
-    var onDelete = this.props.onDelete;
-    var onDiscard = this.props.onDiscard;
-    var submit_btn_text = this.props.submit_btn_text;
 
-    return dd.div(null,
-      dd.button({type: 'submit', className: 'btn btn-primary btn-' + scale}, submit_btn_text || 'Save'),
-      ' ',
-      onDiscard ? dd.button({className: 'btn btn-default btn-' + scale, onClick: onDiscard}, 'Undo Changes') : null,
-      ' ',
-      onCancel ? dd.button({className: 'btn btn-default btn-' + scale, onClick: onCancel}, 'Cancel') : null,
-      ' ',
-      onDelete ? dd.button({className: 'btn btn-danger btn-' + scale, onClick: onDelete}, 'Delete') : null
+    var btns = _.map(buttons, function(b){
+      var onclick = this.props['on' + ucfirst(b[0])];
+      if(b[0] !== 'submit' && !_.isFunction(onclick)){
+        return null;
+      }
+      return dd.button({
+          key: b[0],
+          type: b[0] === 'submit' ? 'submit' : undefined,
+          className: 'btn btn-' + b[1] + ' btn-' + scale,
+          onClick: onclick
+        },
+        this.props[b[0] + '_btn_text'] || b[2]
+      );
+    }, this);
+
+    if(this.props.right_align){
+      btns.reverse();
+    }
+
+    return dd.div(this.props.right_align ? {style: {textAlign: "right"}} : {},
+      btns
     );
   }
 });

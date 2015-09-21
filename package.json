@@ -25,7 +25,8 @@
     "dateformat": "^1.0.11",
     "lodash": "^3.10.0",
     "react-dd": "^1.0.0",
-    "react-hover-mixin": "^1.1.0"
+    "react-hover-mixin": "^1.1.0",
+    "ucfirst": "^1.0.0"
   },
   "scripts": {
     "start": "wzrd example.js -- -t browserify-css"

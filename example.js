@@ -29,9 +29,17 @@ var DaForm = dd.createClass({
     });
     return schema;
   },
+  __reset: function(e){
+    e.preventDefault();
+    this.Form_reset();
+  },
   render: function(){
+    var changes_made = this.Form_areChangesMade();
     var use_horizontal = this.props.use_horizontal;
-    var btns = FormButtons({submit_btn_text: "submit"});
+    var btns = FormButtons({
+      onDiscard: changes_made ? this.__reset : null,
+      submit_btn_text: "submit"
+    });
     return dd.form({onSubmit: this.Form_onSubmit},
       use_horizontal
         ? ezHorizontalFields(this)
