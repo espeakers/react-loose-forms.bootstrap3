@@ -28,13 +28,15 @@ module.exports = dd.createClass({
       if(b[0] !== 'submit' && !_.isFunction(onclick)){
         return null;
       }
-      return dd.button({
-          key: b[0],
-          type: b[0] === 'submit' ? 'submit' : undefined,
-          className: 'btn btn-' + b[1] + ' btn-' + scale,
-          onClick: onclick
-        },
-        this.props[b[0] + '_btn_text'] || b[2]
+      return dd.span({key: b[0]},
+        dd.button({
+            type: b[0] === 'submit' ? 'submit' : undefined,
+            className: 'btn btn-' + b[1] + ' btn-' + scale,
+            onClick: onclick
+          },
+          this.props[b[0] + '_btn_text'] || b[2]
+        ),
+        " "
       );
     }, this);
 
@@ -42,7 +44,7 @@ module.exports = dd.createClass({
       btns.reverse();
     }
 
-    return dd.div(this.props.right_align ? {style: {textAlign: "right"}} : {},
+    return dd.div(this.props.right_align ? {style: {textAlign: "right"}} : null,
       btns
     );
   }
