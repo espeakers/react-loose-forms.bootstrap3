@@ -15,7 +15,7 @@ var component = dd.createClass({
 
     if(field.read_only){
       return dd.p({className: 'form-control-static'},
-        _.has(field.options, value) ? field.options[value] : value
+        _.has(field.options, value) ? field.options[value] : (value === placeholder_value ? null : value)
       );
     }
 
