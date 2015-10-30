@@ -33,7 +33,7 @@ module.exports = dd.createClass({
       _.map(layout, function(row, i){
         return dd.div({key: i, className: 'form-group'},
           _.map(row, function(name, j){
-            return HorizontalField({
+            return _.has(fields, name) ? HorizontalField({
               key: j,
               field: fields[name],
               error: errors[name],
@@ -42,7 +42,7 @@ module.exports = dd.createClass({
               scale: scale,
               label_size: label_size,
               input_size: row.length > 1 ? (input_size - label_size) / 2 : input_size
-            });
+            }) : null;
           })
         );
       })
