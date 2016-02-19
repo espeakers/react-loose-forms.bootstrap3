@@ -2,12 +2,14 @@ var _ = require('lodash');
 var dd = require('react-dd');
 var dateFormat = require('dateformat');
 
-var hashDate = function(d){
-  return _.isDate(d) ? d.toISOString() : null;
+var time_placeholder = 'hh:mm am/pm';
+
+var isDateValid = function(d){
+  return _.isDate(d) && !_.isNaN(d.getTime());
 };
 
-var isDateInvalid = function(d){
-  return !_.isDate(d) || _.isNaN(d.getTime());
+var hashDate = function(d){
+  return isDateValid(d) ? d.toISOString() : null;
 };
 
 var formatDate = function(value, pick_date, pick_time){
@@ -15,14 +17,22 @@ var formatDate = function(value, pick_date, pick_time){
   if(pick_date){
     format_parts.push('mm/dd/yyyy');
   }
+  var extra_append = '';
   if(pick_time){
-    if(_.isDate(value) && value.getHours() === 0 && value.getMinutes() === 0){
-      //just don't show that there is a place for time input
+    if(isDateValid(value) && value.getHours() === 0 && value.getMinutes() === 0){
+      if(pick_date){
+        //provide hint that there is a place to enter the time
+        extra_append += ' - ' + time_placeholder;
+      }else{
+        //let the placeholder take over
+      }
     }else{
       format_parts.push('- h:MM TT');
     }
   }
-  return _.isDate(value) ? dateFormat(value, format_parts.join(' ')) : '';
+  return isDateValid(value)
+    ? dateFormat(value, format_parts.join(' ')) + extra_append
+    : '';
 };
 
 module.exports = dd.createClass({
@@ -72,12 +82,15 @@ module.exports = dd.createClass({
         var d = new Date(text_value);
 
         //try different formats
-        if(isDateInvalid(d)){
-          d = new Date(text_value.replace(/ \- /g, ""));
+        if(!isDateValid(d)){
+          d = new Date(text_value.replace(/\-/g, " "));
+        }
+        if(!isDateValid(d)){
+          d = new Date(text_value.replace(/am\/pm/i, " ").replace(/\-/g, " ").replace(/m|h/g, "0"));
         }
 
         //final verdict if it's valid or not
-        if(!isDateInvalid(d)){
+        if(isDateValid(d)){
           self.props.onDateSet(d);
         }else{
           self.props.onDateSet(null);
@@ -106,13 +119,13 @@ module.exports = dd.createClass({
       placeholder_parts.push('mm/dd/yyyy');
     }
     if(pick_time){
-      placeholder_parts.push(' - hh:mm am/pm');
+      placeholder_parts.push(time_placeholder);
     }
     return dd.span({className: is_text_invalid ? 'has-error' : null},
       dd.input({
         type: 'text',
         className: 'form-control',
-        placeholder: placeholder || placeholder_parts.join(' '),
+        placeholder: placeholder || placeholder_parts.join(' - '),
         value: text_value,
         onChange: this.__onChange,
         onBlur: this.__onBlur
