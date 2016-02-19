@@ -3,6 +3,12 @@ var dd = require('react-dd');
 var dateFormat = require('dateformat');
 var wrapPreventDefault = require("./wrapPreventDefault");
 
+var icon_prefix = 'react-loose-forms-bs3-date-icon';
+var icon_classes = {
+  angle_up: icon_prefix + ' ' + icon_prefix + '-angle-up',
+  angle_down: icon_prefix + ' ' + icon_prefix + '-angle-down'
+};
+
 module.exports = dd.createClass({
   __increment: function(field, inc){
     var self = this;
@@ -33,21 +39,31 @@ module.exports = dd.createClass({
   __onTypeAMPM: function(e){
   },
   render: function(){
+    var self = this;
     var value = _.isDate(this.props.value) ? this.props.value : null;
 
     var hours = value ? dateFormat(value, 'h') : '';
     var minutes = value ? dateFormat(value, 'MM') : '';
     var ampm = value ? dateFormat(value, 'TT') : '';
 
+    var incBtn = function(field, inc){
+      var onClick = self.__increment(field, inc);
+      return dd.button({className: 'btn btn-default', onClick: onClick},
+        dd.i({
+          className: inc > 0 ? icon_classes.angle_up : icon_classes.angle_down
+        })
+      );
+    };
+
     return dd.div({className: 'TimePicker'},
       dd.table(null,
         dd.tbody(null,
           dd.tr(null,
-            dd.td(null, dd.button({className: 'btn btn-default', onClick: this.__increment('hour', 1)}, dd.i({className: 'react-loose-forms-bs3-date-icon react-loose-forms-bs3-date-icon-angle-up'}))),
+            dd.td(null, incBtn('hour', 1)),
             dd.td(),
-            dd.td(null, dd.button({className: 'btn btn-default', onClick: this.__increment('min', 1)}, dd.i({className: 'react-loose-forms-bs3-date-icon react-loose-forms-bs3-date-icon-angle-up'}))),
+            dd.td(null, incBtn('min', 5)),
             dd.td(),
-            dd.td(null, dd.button({className: 'btn btn-default', onClick: this.__increment('hour', 12)}, dd.i({className: 'react-loose-forms-bs3-date-icon react-loose-forms-bs3-date-icon-angle-up'})))
+            dd.td(null, incBtn('hour', 12))
           ),
           dd.tr(null,
             dd.td(null, dd.input({type: 'text', className: 'form-control input-sm', placeholder: 'HH', maxLength: 2, value: hours, onChange: this.__onTypeHour, disabled: 'disabled'})),
@@ -57,11 +73,11 @@ module.exports = dd.createClass({
             dd.td(null, dd.input({type: 'text', className: 'form-control input-sm', placeholder: 'AM/PM', maxLength: 2, value: ampm, onChange: this.__onTypeAMPM, disabled: 'disabled'}))
           ),
           dd.tr(null,
-            dd.td(null, dd.button({className: 'btn btn-default', onClick: this.__increment('hour', -1)}, dd.i({className: 'react-loose-forms-bs3-date-icon react-loose-forms-bs3-date-icon-angle-down'}))),
+            dd.td(null, incBtn('hour', -1)),
             dd.td(),
-            dd.td(null, dd.button({className: 'btn btn-default', onClick: this.__increment('min', -1)}, dd.i({className: 'react-loose-forms-bs3-date-icon react-loose-forms-bs3-date-icon-angle-down'}))),
+            dd.td(null, incBtn('min', -5)),
             dd.td(),
-            dd.td(null, dd.button({className: 'btn btn-default', onClick: this.__increment('hour', -12)}, dd.i({className: 'react-loose-forms-bs3-date-icon react-loose-forms-bs3-date-icon-angle-down'})))
+            dd.td(null, incBtn('hour', -12))
           )
         )
       )
