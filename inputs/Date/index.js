@@ -50,6 +50,8 @@ var component = dd.createClass({
   render: function(){
     var field = this.props.field;
     var value = this.props.value;
+    var show_calendar = this.state.show_calendar;
+    var show_timepicker = this.state.show_timepicker;
 
     var pick_date = _.has(field, 'pick_date') ? !!field.pick_date : true;//by default be a date picker
     var pick_time = !!field.pick_time;//by default don't pick time
@@ -77,20 +79,25 @@ var component = dd.createClass({
         onMouseLeave: this.hoverable_onMouseLeave
       },
       DateTypeIn({pick_date: pick_date, pick_time: pick_time, value: value, onDateSet: this.__onDateSet, placeholder: field.placeholder}),
-      dd.span({className: 'input-group-btn' + (this.state.show_calendar || this.state.show_timepicker ? ' open' : ''), style: {verticalAlign: 'top'}},
-        !pick_date ? null : dd.button({type: 'button', className: 'btn btn-default', onClick: this.__toggleCalendar},
+      dd.span({
+          className: 'input-group-btn'
+            + (show_calendar || show_timepicker ? ' open' : '')
+            + (field.dropup ? ' dropup' : ''),
+          style: {verticalAlign: 'top'}
+        },
+        pick_date ? dd.button({type: 'button', className: 'btn btn-default', onClick: this.__toggleCalendar},
           dd.i({className: 'react-loose-forms-bs3-date-icon react-loose-forms-bs3-date-icon-calendar'})
-        ),
-        !pick_time ? null : dd.button({type: 'button', className: 'btn btn-default', onClick: this.__toggleTimepicker},
+        ) : null,
+        pick_time ? dd.button({type: 'button', className: 'btn btn-default', onClick: this.__toggleTimepicker},
           dd.i({className: 'react-loose-forms-bs3-date-icon react-loose-forms-bs3-date-icon-clock'})
-        ),
-        !(this.state.show_calendar || this.state.show_timepicker) ? null : dd.div({
+        ) : null,
+        show_calendar || show_timepicker ? dd.div({
             className: 'dropdown-menu pull-right',
             onClick: this.__stopClick
           },
-          !this.state.show_calendar ? null : DatePickerCalendar({field: field, value: value, onDatePicked: this.__onDatePicked}),
-          !this.state.show_timepicker ? null : TimePicker({field: field, value: value, onTimeChanged: this.__onTimeChanged})
-        )
+          show_calendar ? DatePickerCalendar({field: field, value: value, onDatePicked: this.__onDatePicked}) : null,
+          show_timepicker ? TimePicker({field: field, value: value, onTimeChanged: this.__onTimeChanged}) : null
+        ) : null
       )
     );
   }
