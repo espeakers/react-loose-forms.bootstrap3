@@ -71,7 +71,7 @@ module.exports = dd.createClass({
     var self = this;
 
     self.__parseInputToDate = (function(){
-      var last_input_checked = null;
+      var last_input_checked = "";
 
       return function(){
         var text_value = self.state.text_value;
