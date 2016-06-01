@@ -23,7 +23,8 @@ var component = dd.createClass({
       name: field.name,
       className: 'form-control',
       style: {border: 0, boxShadow: 'none', paddingLeft: 0, paddingRight: 0},
-      onChange: this.__onChange
+      onChange: this.__onChange,
+      multiple: field.multiple === true ? true : false
     });
   }
 });
