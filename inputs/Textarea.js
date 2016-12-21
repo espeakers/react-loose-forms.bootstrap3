@@ -16,6 +16,7 @@ var component = dd.createClass({
 
     return dd.textarea({
       rows: field.rows > 0 ? field.rows : 3,
+      disabled: field.disabled ? "disabled" : null,
       placeholder: field.placeholder || null,
       className: 'form-control',
       value: value || '',
