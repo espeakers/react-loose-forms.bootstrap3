@@ -14,7 +14,7 @@ var component = dd.createClass({
         checked: !!value,
         name: field.name,
         onChange: this.__onChange,
-        disabled: field.read_only ? 'disabled' : null
+        disabled: (field.read_only || field.disabled) ? 'disabled' : null
       }),
       ' ',
       field.label

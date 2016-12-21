@@ -17,6 +17,7 @@ var component = dd.createClass({
 
     var p = {
       name: field.name,
+      disabled: field.disabled ? "disabled" : null,
       type: field.type || 'text',
       value: value || '',
       placeholder: field.placeholder || null,

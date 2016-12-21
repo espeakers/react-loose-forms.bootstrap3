@@ -20,6 +20,7 @@ var component = dd.createClass({
     }
     return dd.input({
       type: 'file',
+      disabled: field.disabled ? "disabled" : null,
       name: field.name,
       className: 'form-control',
       style: {border: 0, boxShadow: 'none', paddingLeft: 0, paddingRight: 0},
