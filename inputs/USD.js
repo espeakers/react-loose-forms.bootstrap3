@@ -56,7 +56,7 @@ var component = dd.createClass({
       onChange: this.__onChange
     };
     return dd.div({className: 'input-group'},
-        dd.span({className: 'input-group-addon'}, '$'),
+        dd.span({className: 'input-group-addon'}, '$ USD'),
         dd.input(p)
     );
   }
