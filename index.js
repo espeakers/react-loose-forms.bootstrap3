@@ -5,6 +5,7 @@ module.exports.types = {
   "file": require("./inputs/File"),
   "select": require("./inputs/Select"),
   "static": require("./inputs/Static"),
+  "USD": require("./inputs/USD"),
   "text": require("./inputs/Text"),
   "textarea": require("./inputs/Textarea")
 };
