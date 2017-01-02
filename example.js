@@ -1,5 +1,6 @@
 var dd = require("react-dd");
 var React = require("react");
+var ReactDOM = require("react-dom");
 var FormMixin = require("react-loose-forms");
 
 require("./bootstrap.min.css");
@@ -58,7 +59,8 @@ var DaForm = dd.createClass({
   }
 });
 
-React.render(dd.createClass({
+var div = document.createElement("DIV")
+ReactDOM.render(dd.createClass({
   getInitialState: function(){
     return {use_horizontal: false};
   },
@@ -79,4 +81,5 @@ React.render(dd.createClass({
       )
     );
   }
-})(), document.body);
+})(), div);
+document.body.appendChild(div);
