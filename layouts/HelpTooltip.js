@@ -4,11 +4,40 @@ var HoverMixin = require("react-hover-mixin");
 require("./HelpTooltip.css.js");
 
 module.exports = dd.createClass({
-  mixins: [HoverMixin],
-  hoverable_not_relative_to_parent_bounding_rect: true,
-  __onClick: function(e){
+  getInitialState: function(){
+    //just position it off screen so the height/width stays intact
+    return {
+      top: -100000,
+      left: -100000
+    };
+  },
+  onClick: function(e){
     e.preventDefault();
     e.stopPropagation();
+    this.__showIt(e.clientX, e.clientY);
+  },
+  onMouseEnter: function(e){
+    this.__showIt(e.clientX, e.clientY);
+  },
+  onMouseLeave: function(){
+    this.__hideIt();
+  },
+  onRef: function(popover_node){
+    this.popover_node = popover_node;
+  },
+  __showIt: function(left, top){
+    if(this.popover_node){
+      top -= this.popover_node.offsetHeight;
+      left -= this.popover_node.offsetWidth/2;
+    }
+    this.setState({top: top, left: left});
+  },
+  __hideIt: function(){
+    //just position it off screen so the height/width stays intact
+    this.setState({
+      top: -100000,
+      left: -100000
+    });
   },
   render: function(){
     var title = this.props.title;
@@ -18,16 +47,17 @@ module.exports = dd.createClass({
         className: 'HelpTooltip',
         href: '#',
         style: {position: 'relative'},
-        onMouseEnter: this.hoverable_onMouseEnter,
-        onMouseLeave: this.hoverable_onMouseLeave,
-        onClick: this.__onClick
+        onMouseEnter: this.onMouseEnter,
+        onMouseLeave: this.onMouseLeave,
+        onClick: this.onClick
       },
       dd.i({className: "react-bootstrap3-tooltip-icon react-bootstrap3-tooltip-icon-help-circled"}),
-      dd.div({className: 'popover top', ref: 'hoverable', style: {
-          display: this.state.hover ? 'block' : 'none',//hide show so that we can keep access to the dom node's width height in componentDidUpdate
+      dd.div({className: 'popover top', ref: this.onRef, style: {
+          display: 'block',//always show so that onMouseEnter we have the height/width of this popover
           width: content ? Math.max(70, content.length * 14) + 'px' : 'auto',//aprox the width for the content, note that .popover class sets a max-width, so no worries
-          top: this.state.hoverable_top + 'px',
-          left: this.state.hoverable_left + 'px',
+          position: 'fixed',//this way a parent container can't overflow:hidden this
+          top: this.state.top + 'px',
+          left: this.state.left + 'px',
 
           //normalizing styles (so parent font styling doesn't mess with this)
           fontSize: '14px',
