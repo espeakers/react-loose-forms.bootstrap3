@@ -54,6 +54,8 @@ var GlobalTooltip = React.createClass({
   getInitialState: function(){
     //just position it off screen so the height/width stays intact
     return {
+      x: -100000,
+      y: -100000,
       top: -100000,
       left: -100000,
       title: null,
@@ -70,6 +72,8 @@ var GlobalTooltip = React.createClass({
     }
     //just position it off screen so the height/width stays intact
     this.setState({
+      x: -100000,
+      y: -100000,
       top: -100000,
       left: -100000
     });
@@ -92,13 +96,28 @@ var GlobalTooltip = React.createClass({
       left -= this.popover_node.offsetWidth/2;
     }
     this.setState({
+      x: to_show.x,
+      y: to_show.y,
       top: top,
       left: left,
       title: to_show.title,
       content: to_show.content
     });
   },
+  componentDidUpdate: function(){
+    if(!this.popover_node || (this.state.y < -1000)){
+      return;
+    }
+    var top = this.state.y - this.popover_node.offsetHeight;
+    var left = this.state.x - this.popover_node.offsetWidth/2;
+    if((top !== this.state.top)
+        || (left !== this.state.left)){
+      this.setState({top: top, left: left});
+    }
+  },
   render: function(){
+    var top = this.state.top;
+    var left = this.state.left;
     var title = this.state.title;
     var content = this.state.content;
 
@@ -107,8 +126,8 @@ var GlobalTooltip = React.createClass({
           display: 'block',//always show so that onMouseEnter we have the height/width of this popover
           width: content ? Math.max(70, content.length * 14) + 'px' : 'auto',//aprox the width for the content, note that .popover class sets a max-width, so no worries
           position: 'fixed',//this way a parent container can't overflow:hidden this
-          top: this.state.top + 'px',
-          left: this.state.left + 'px',
+          top: top + 'px',
+          left: left + 'px',
 
           //normalizing styles (so parent font styling doesn't mess with this)
           fontSize: '14px',
