@@ -125,6 +125,7 @@ var GlobalTooltip = React.createClass({
 });
 
 var div = document.createElement("DIV")
+div.setAttribute("id", "loose-forms-GlobalTooltip");//ability to style it
 ReactDOM.render(e(GlobalTooltip), div);
 document.body.appendChild(div);
 
