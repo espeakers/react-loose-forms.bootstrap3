@@ -14,7 +14,7 @@ var component = dd.createClass({
 
     return (
         dd.div(
-            {className: "form-group signature-group row"},
+            {className: "signature-group row"},
             dd.div({className: "col-sm-5 signature-input-holder"},
                 dd.div({className: "input"}, initial_name),
                 dd.span({className: "help-block"}, "Name")
