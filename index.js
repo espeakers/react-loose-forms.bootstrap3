@@ -3,6 +3,7 @@ module.exports.types = {
   "combo": require("./inputs/Combo"),
   "date": require("./inputs/Date"),
   "file": require("./inputs/File"),
+  "initial": require("./inputs/Initial"),
   "select": require("./inputs/Select"),
   "static": require("./inputs/Static"),
   "USD": require("./inputs/USD"),
