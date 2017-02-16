@@ -5,6 +5,9 @@ var dateFormat = require('dateformat');
 require('./index.less');
 
 var component = dd.createClass({
+  __onChange: function(e){
+    this.props.onChange(e.target.value);
+  },
   render: function(){
     var field = this.props.field;
     var value = this.props.value;
