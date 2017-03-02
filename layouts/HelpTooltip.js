@@ -143,10 +143,13 @@ var GlobalTooltip = React.createClass({
   }
 });
 
-var div = document.createElement("DIV")
-div.setAttribute("id", "loose-forms-GlobalTooltip");//ability to style it
-ReactDOM.render(e(GlobalTooltip), div);
-document.body.appendChild(div);
+// in case we are testing, document is undefined, so skip this section
+if (typeof document !== 'undefined') {
+	var div = document.createElement("DIV")
+	div.setAttribute("id", "loose-forms-GlobalTooltip");//ability to style it
+	ReactDOM.render(e(GlobalTooltip), div);
+	document.body.appendChild(div);
+}
 
 module.exports = dd.createClass({
   getInitialState: function(){
