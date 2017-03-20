@@ -2,7 +2,7 @@ var dd = require('react-dd');
 
 var component = dd.createClass({
   __onChange: function(e){
-    this.props.onChange(e.target.value);
+  	this.props.onChange(e.target.value);
   },
   render: function(){
     var field = this.props.field;

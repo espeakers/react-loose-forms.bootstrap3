@@ -18,11 +18,11 @@ var component = dd.createClass({
     return (
         dd.div(
             {className: "signature-group row"},
-            dd.div({className: "col-sm-5 signature-input-holder"},
+            dd.div({className: "col-xs-5 col-sm-5 signature-input-holder"},
                 dd.div({className: "input"}, initial_name),
                 dd.span({className: "help-block"}, "Name")
             ),
-            dd.div({className: "col-sm-2 signature-input-holder"},
+            dd.div({className: "col-xs-3 col-sm-2 signature-input-holder"},
                 dd.div(null,
                     dd.input({
                         name: field.name,
@@ -37,7 +37,7 @@ var component = dd.createClass({
                 ),
                 dd.span({className: "help-block"}, "Initials")
             ),
-            dd.div({className: "col-sm-5 signature-input-holder"},
+            dd.div({className: "col-xs-4 col-sm-5 signature-input-holder"},
                 dd.div({className: "input"},
                     initial_date
                 ),
