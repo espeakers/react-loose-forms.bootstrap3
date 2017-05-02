@@ -2,7 +2,7 @@ var _ = require('lodash');
 var dd = require('react-dd');
 var dateFormat = require('dateformat');
 
-require('./index.less');
+require('./index.less.js');
 
 var component = dd.createClass({
   __onChange: function(e){
